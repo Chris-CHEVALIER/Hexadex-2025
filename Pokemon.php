@@ -3,6 +3,7 @@
 class Pokemon
 {
     # Attributs
+    private int $id;
     private int $number;
     private string $name;
     private string $image;
@@ -10,24 +11,19 @@ class Pokemon
     private string $type2;
 
     # Méthodes
-
-    public function __construct(int $number, string $name, string $image, string $type1, string $type2 = "")
+    public function __construct(array $data)
     {
-        $this->setNumber($number);
-        $this->setName($name);
-        $this->setImage($image);
-        $this->setType1($type1);
-        $this->setType2($type2);
+        $this->hydrate($data);
     }
 
-    public function attack(Pokemon $target): void
+    public function hydrate(array $data): void
     {
-        echo "Le Pokémon attaque " . $target->name . ".";
-    }
-
-    public function rename(string $newName): void
-    {
-        $this->name = $newName;
+        foreach ($data as $key => $value) {
+            $method = "set" . ucfirst($key); // setId, setNumber, setName, etc.
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
     }
 
     /**
@@ -116,6 +112,24 @@ class Pokemon
     public function setType2(string $type2): self
     {
         $this->type2 = $type2;
+
+        return $this;
+    }
+
+    /**
+     * Get the value of id
+     */
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set the value of id
+     */
+    public function setId(int $id): self
+    {
+        $this->id = $id;
 
         return $this;
     }

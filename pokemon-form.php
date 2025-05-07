@@ -1,4 +1,15 @@
-<?php require "header.php" ?>
+<?php
+require "header.php";
+
+$newPokemon = new Pokemon($_POST); // ["number" => 412, "name" => "Cheniti", etc.]
+/* echo "<pre>";
+print_r($_POST);
+print_r($newPokemon);
+echo "</pre>"; */
+$pokemonController->createPokemon($newPokemon);
+
+?>
+
 <form method="post" class="container mt-2">
     <label for="number">Numéro</label>
     <input type="number" class="form-control" name="number" id="number" placeholder="Numéro du Pokémon" required min=1 max=1000>

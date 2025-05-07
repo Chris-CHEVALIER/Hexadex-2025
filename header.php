@@ -16,7 +16,16 @@
         require "$className.php";
     });
 
-    $pikachu = new Pokemon(25, "Pikachu", "https://m.media-amazon.com/images/I/612+s8hyJ8L._AC_UF1000,1000_QL80_.jpg", "Electrik");
+    $pikachuData = [
+        "id" => 1,
+        "number" => 25,
+        "name" => "Pikachu",
+        "image" => "https://m.media-amazon.com/images/I/612+s8hyJ8L._AC_UF1000,1000_QL80_.jpg",
+        "type1" => "Electrik",
+        "type2" => "",
+    ];
+
+    $pikachu = new Pokemon($pikachuData);
     $pokemonController = new PokemonController();
 
     ?>
