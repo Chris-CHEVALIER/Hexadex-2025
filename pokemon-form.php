@@ -1,5 +1,9 @@
 <?php
 require "header.php";
+// TODO: 4. Vérifier si connecté pour accéder à cette page -->
+if (!is_connected()) {
+    echo "<script>window.location.href='login.php'</script>";
+}
 
 if ($_POST) {
     if ($_FILES["image"]["size"] < 2000000) {

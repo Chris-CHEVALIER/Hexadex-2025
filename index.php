@@ -11,8 +11,11 @@ $pokemons = $pokemonController->readAllPokemon();
             <div class="card-body">
                 <h5 class="card-title"><?= $pokemon->getName() ?></h5>
                 <p class="card-text"><?= $pokemon->getType1() ?> - <?= $pokemon->getType2() ?></p>
-                <a href="#" class="btn btn-warning">Modifier</a>
-                <a href="./delete.php?id=<?= $pokemon->getId() ?>" class="btn btn-danger">Supprimer</a>
+                <!-- // TODO: 3. Masquer boutons si pas connecté : -->
+                <?php if (is_connected()): ?>
+                    <a href="#" class="btn btn-warning">Modifier</a>
+                    <a href="./delete.php?id=<?= $pokemon->getId() ?>" class="btn btn-danger">Supprimer</a>
+                <?php endif ?>
             </div>
         </div>
     <?php endforeach ?>

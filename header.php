@@ -12,6 +12,13 @@
 <body>
     <?php
     session_start();
+
+    // TODO: 1. Montrer fonction :
+    function is_connected(): bool
+    {
+        return $_SESSION && $_SESSION["email"] && $_SESSION["firstName"] && $_SESSION["lastName"];
+    }
+
     spl_autoload_register(function (string $className) {
         require "$className.php";
     });
@@ -41,13 +48,16 @@
                     <li class="nav-item">
                         <a class="nav-link active" aria-current="page" href="./index.php">Accueil</a>
                     </li>
+                    <!-- // TODO: 2. Masquer bouton si pas connecté : -->
+                     <?php if (is_connected()): ?>
                     <li class="nav-item">
                         <a class="nav-link" href="./pokemon-form.php">Créer un Pokémon</a>
                     </li>
+                    <?php endif ?>
                     <li class="nav-item">
                         <a class="nav-link" href="./type-form.php">Créer un type</a>
                     </li>
-                    <?php if ($_SESSION && $_SESSION["email"] && $_SESSION["firstName"] && $_SESSION["lastName"]): ?>
+                    <?php if (is_connected()): ?>
                         <li class="nav-item">
                             <a class="nav-link" href="./logout.php">Se déconnecter</a>
                         </li>
@@ -59,8 +69,10 @@
                             <a class="nav-link" href="./login.php">Se connecter</a>
                         </li>
                     <?php endif ?>
-
                 </ul>
+                <?php if (is_connected()) {
+                    echo "<p class='m-2'>Bienvenue {$_SESSION["firstName"]} {$_SESSION["lastName"]} !</p>";
+                } ?>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Rechercher un Pokémon" aria-label="Rechercher" />
                     <button class="btn btn-outline-success" type="submit">Rechercher</button>

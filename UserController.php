@@ -9,11 +9,11 @@ class UserController
         // Connexion à la BDD
         $host = "localhost";
         $dbName = "hexadex";
-        $port = 3306;
+        $port = 8889;
         $userName = "root";
         $password = "root";
         try {
-            $this->setDb(new PDO("mysql:$host;dbname=$dbName;port=$port;charset=utf8mb4", $userName, $password));
+            $this->setDb(new PDO("mysql:host=$host;dbname=$dbName;port=$port;charset=utf8mb4", $userName, $password));
             //echo "Connexion réussie !";
         } catch (PDOException $error) {
             echo "<p style='color:red'>{$error->getMessage()}</p>";
