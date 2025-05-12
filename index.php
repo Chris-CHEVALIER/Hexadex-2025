@@ -3,7 +3,7 @@ require "header.php";
 $pokemons = $pokemonController->readAllPokemon();
 ?>
 
-<div class="container d-flex flex-wrap justify-content-center mt-3">
+<div class="container d-flex flex-wrap justify-content-center mt-3 gap-3 mb-5">
     <?php
     foreach ($pokemons as $pokemon): ?>
         <div class="card" style="width: 18rem;">

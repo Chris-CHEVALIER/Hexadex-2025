@@ -7,12 +7,13 @@ class PokemonController
     public function __construct()
     {
         // Connexion à la BDD
+        $host = "localhost";
         $dbName = "hexadex";
-        $port = 8889;
+        $port = 3306;
         $userName = "root";
         $password = "root";
         try {
-            $this->setDb(new PDO("mysql:host=localhost;dbname=$dbName;port=$port;charset=utf8mb4", $userName, $password));
+            $this->setDb(new PDO("mysql:$host;dbname=$dbName;port=$port;charset=utf8mb4", $userName, $password));
             //echo "Connexion réussie !";
         } catch (PDOException $error) {
             echo "<p style='color:red'>{$error->getMessage()}</p>";

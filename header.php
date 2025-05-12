@@ -11,7 +11,7 @@
 
 <body>
     <?php
-
+    session_start();
     spl_autoload_register(function (string $className) {
         require "$className.php";
     });
@@ -27,6 +27,7 @@
 
     $pikachu = new Pokemon($pikachuData);
     $pokemonController = new PokemonController();
+    $userController = new UserController();
 
     ?>
     <nav class="navbar navbar-expand-lg bg-body-tertiary">
@@ -46,6 +47,19 @@
                     <li class="nav-item">
                         <a class="nav-link" href="./type-form.php">Créer un type</a>
                     </li>
+                    <?php if ($_SESSION && $_SESSION["email"] && $_SESSION["firstName"] && $_SESSION["lastName"]): ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./logout.php">Se déconnecter</a>
+                        </li>
+                    <?php else: ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./register.php">S'inscrire</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="./login.php">Se connecter</a>
+                        </li>
+                    <?php endif ?>
+
                 </ul>
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Rechercher un Pokémon" aria-label="Rechercher" />
